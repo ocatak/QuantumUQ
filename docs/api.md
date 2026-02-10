@@ -1,14 +1,20 @@
 ## API Overview
 
-Public symbols exposed from `quantumuq`:
+This section is auto-generated from the Python docstrings using
+`mkdocstrings`. It always reflects the latest installed version of
+`quantumuq`.
 
-- `wrap_qnode`
-- `wrap_qiskit_estimator`
-- `wrap_qiskit_sampler`
-- `UQModel`
-- `ShotBootstrap`, `DeepEnsemble`, `NoiseProfile`
-- `PredictiveDistribution`
-- Metrics: `ece`, `nll`, `brier`, `predictive_entropy`, `rmse`, `gaussian_nll`
+### Core modules
 
-See docstrings for detailed usage and the examples in `examples/notebooks`.
+::: quantumuq.core.methods
+
+::: quantumuq.core.metrics
+
+::: quantumuq.core.predictors
+
+### Adapters
+
+::: quantumuq.adapters.pennylane_adapter
+
+::: quantumuq.adapters.qiskit_adapter
 

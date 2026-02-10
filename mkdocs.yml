@@ -3,6 +3,18 @@ site_description: Uncertainty Quantification for Quantum Machine Learning
 site_author: Ozgur Catak
 repo_url: https://github.com/ocatak/QuantumUQ
 
+plugins:
+  - search
+  - mkdocs-jupyter:
+      include_source: true
+      execute: false
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]  # project root so quantumuq is importable when not installed
+          options:
+            docstring_style: numpy
+
 theme:
   name: material
 
@@ -12,6 +24,12 @@ nav:
   - Quickstart:
       - PennyLane: quickstart_pennylane.md
       - Qiskit: quickstart_qiskit.md
+  - Examples:
+      - PennyLane quickstart: examples/00_pennylane_quickstart.ipynb
+      - Qiskit quickstart: examples/01_qiskit_quickstart.ipynb
+      - PennyLane training ensemble: examples/02_pennylane_training_ensemble.ipynb
+      - Qiskit training SPSA: examples/03_qiskit_training_spsa.ipynb
+      - Shots sweep & noise profile: examples/04_shots_sweep_noise_profile.ipynb
   - API Reference: api.md
   - Publishing: publishing.md
 

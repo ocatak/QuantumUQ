@@ -5,6 +5,8 @@ QuantumUQ
 
 Uncertainty Quantification for Quantum Machine Learning on **PennyLane** and **Qiskit**.
 
+**Documentation**: [`https://quantumuq.readthedocs.io/en/latest/`](https://quantumuq.readthedocs.io/en/latest/)
+
 ### Installation
 
 ```bash

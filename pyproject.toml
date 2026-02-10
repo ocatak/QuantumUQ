@@ -1,0 +1,81 @@
+[build-system]
+requires = ["hatchling>=1.21.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "quantumuq"
+version = "0.1.0"
+description = "Uncertainty Quantification for Quantum Machine Learning (PennyLane & Qiskit)."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10,<3.13"
+authors = [
+  { name = "Ozgur Catak", email = "ozgur.catak@example.com" },
+]
+keywords = ["quantum", "uncertainty-quantification", "qml", "pennylane", "qiskit"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.22",
+]
+
+[project.optional-dependencies]
+docs = [
+  "mkdocs>=1.5",
+  "mkdocs-material>=9.0",
+]
+dev = [
+  "pytest>=7.0",
+  "ruff>=0.5.0",
+  "black>=24.0.0",
+  "mypy>=1.8.0",
+  "jupyter>=1.0.0",
+  "pennylane>=0.35",
+  "qiskit>=1.0.0",
+]
+aer = [
+  "qiskit-aer>=0.13",
+]
+
+[project.urls]
+Homepage = "https://github.com/ocatak/QuantumUQ"
+Repository = "https://github.com/ocatak/QuantumUQ"
+
+[project.scripts]
+quantumuq-smoke = "examples.scripts.run_smoke_examples:main"
+
+[tool.hatch.build]
+include = [
+  "quantumuq",
+  "examples",
+  "docs",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.black]
+line-length = 88
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+select = ["E", "F", "I", "B"]
+ignore = ["E203", "E501"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+strict_optional = false
+disallow_untyped_defs = false
+

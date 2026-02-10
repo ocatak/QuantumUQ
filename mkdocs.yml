@@ -1,0 +1,17 @@
+site_name: QuantumUQ
+site_description: Uncertainty Quantification for Quantum Machine Learning
+site_author: Ozgur Catak
+repo_url: https://github.com/ocatak/QuantumUQ
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Concepts: concepts.md
+  - Quickstart:
+      - PennyLane: quickstart_pennylane.md
+      - Qiskit: quickstart_qiskit.md
+  - API Reference: api.md
+  - Publishing: publishing.md
+

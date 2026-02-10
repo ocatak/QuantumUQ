@@ -10,3 +10,5 @@ build/
 .ipynb_checkpoints/
 examples/artifacts/
 
+push_github.sh
+

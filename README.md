@@ -1,6 +1,8 @@
 QuantumUQ
 =========
 
+![QuantumUQ logo](QuantumUQ-logo.png)
+
 Uncertainty Quantification for Quantum Machine Learning on **PennyLane** and **Qiskit**.
 
 ### Installation

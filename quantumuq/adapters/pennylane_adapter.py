@@ -7,7 +7,6 @@ import numpy as np
 
 from ..core.predictors import Predictor, TaskType, UQModel
 
-
 PostprocessFn = Callable[[np.ndarray], np.ndarray]
 
 

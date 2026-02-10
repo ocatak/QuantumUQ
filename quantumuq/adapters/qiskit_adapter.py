@@ -7,7 +7,6 @@ import numpy as np
 
 from ..core.predictors import Predictor, TaskType, UQModel
 
-
 FeatureMapFn = Callable[[np.ndarray], Sequence[Sequence[float]]]
 PostprocessFn = Callable[[np.ndarray], np.ndarray]
 BitstringToClassFn = Callable[[str | int], int]
@@ -15,7 +14,7 @@ BitstringToClassFn = Callable[[str | int], int]
 
 def _import_qiskit_primitives() -> Any:
     try:
-        from qiskit.primitives import BaseSampler, BaseEstimator  # type: ignore
+        from qiskit.primitives import BaseEstimator, BaseSampler  # type: ignore
     except Exception as exc:  # pragma: no cover - import guard
         raise RuntimeError(
             "Qiskit primitives are required. Install with `pip install qiskit`."

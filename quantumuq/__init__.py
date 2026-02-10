@@ -1,7 +1,8 @@
 """Public API for QuantumUQ."""
 
 from ._version import __version__
-from .core.predictors import PredictiveDistribution, UQModel
+from .adapters.pennylane_adapter import wrap_qnode
+from .adapters.qiskit_adapter import wrap_qiskit_estimator, wrap_qiskit_sampler
 from .core.methods import DeepEnsemble, NoiseProfile, ShotBootstrap
 from .core.metrics import (
     brier,
@@ -11,8 +12,7 @@ from .core.metrics import (
     predictive_entropy,
     rmse,
 )
-from .adapters.pennylane_adapter import wrap_qnode
-from .adapters.qiskit_adapter import wrap_qiskit_estimator, wrap_qiskit_sampler
+from .core.predictors import PredictiveDistribution, UQModel
 
 __all__ = [
     "__version__",

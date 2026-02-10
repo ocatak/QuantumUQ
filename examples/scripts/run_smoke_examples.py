@@ -1,20 +1,20 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
+from typing import Optional
+
+import numpy as np
+
+from quantumuq.core.methods import DeepEnsemble, ShotBootstrap
+from quantumuq.core.metrics import ece, nll, rmse
+from quantumuq.core.predictors import Predictor, TaskType, UQModel
+
 """Lightweight CLI smoke tests for QuantumUQ.
 
 This script intentionally avoids depending on PennyLane or Qiskit so it can
 run even in minimal environments. It exercises the core abstractions and
 methods using a simple in-memory predictor.
 """
-
-from dataclasses import dataclass
-from typing import Optional
-
-import numpy as np
-
-from quantumuq.core.metrics import ece, nll, rmse
-from quantumuq.core.methods import DeepEnsemble, ShotBootstrap
-from quantumuq.core.predictors import Predictor, TaskType, UQModel
 
 
 @dataclass

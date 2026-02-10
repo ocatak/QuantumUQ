@@ -19,7 +19,6 @@ def brier(y_true: np.ndarray, p_pred: np.ndarray) -> float:
 
     y_true = np.asarray(y_true, dtype=int)
     p_pred = np.asarray(p_pred, dtype=float)
-    n = y_true.shape[0]
     n_classes = p_pred.shape[1]
     one_hot = np.eye(n_classes)[y_true]
     diff = p_pred - one_hot

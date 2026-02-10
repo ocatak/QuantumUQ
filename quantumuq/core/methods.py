@@ -5,7 +5,12 @@ from typing import Dict, List, Optional, Sequence
 
 import numpy as np
 
-from .predictors import PredictiveDistribution, Predictor, UncertaintyMethod, stack_ensemble_samples
+from .predictors import (
+    PredictiveDistribution,
+    Predictor,
+    UncertaintyMethod,
+    stack_ensemble_samples,
+)
 
 
 @dataclass

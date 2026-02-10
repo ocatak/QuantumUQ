@@ -7,7 +7,6 @@ from quantumuq import (
     NoiseProfile,
     PredictiveDistribution,
     ShotBootstrap,
-    UQModel,
     brier,
     ece,
     gaussian_nll,

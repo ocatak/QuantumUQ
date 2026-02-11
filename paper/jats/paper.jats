@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.2 20190208//EN"
+                  "JATS-publishing1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+<front>
+<journal-meta>
+<journal-id></journal-id>
+<journal-title-group>
+<journal-title>Journal of Open Source Software</journal-title>
+<abbrev-journal-title>JOSS</abbrev-journal-title>
+</journal-title-group>
+<issn publication-format="electronic">2475-9066</issn>
+<publisher>
+<publisher-name>Open Journals</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="publisher-id">0</article-id>
+<article-id pub-id-type="doi">N/A</article-id>
+<title-group>
+<article-title>QuantumUQ: Uncertainty Quantification for Quantum Machine
+Learning with PennyLane and Qiskit</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author">
+<name>
+<surname>Catak</surname>
+<given-names>Ferhat</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+</contrib>
+<aff id="aff-1">
+<institution-wrap>
+<institution>University of Stavanger, Norway</institution>
+</institution-wrap>
+</aff>
+</contrib-group>
+<pub-date date-type="pub" publication-format="electronic" iso-8601-date="2026-02-11">
+<day>11</day>
+<month>2</month>
+<year>2026</year>
+</pub-date>
+<volume>¿VOL?</volume>
+<issue>¿ISSUE?</issue>
+<fpage>¿PAGE?</fpage>
+<permissions>
+<copyright-statement>Authors of papers retain copyright and release the
+work under a Creative Commons Attribution 4.0 International License (CC
+BY 4.0)</copyright-statement>
+<copyright-year>1970</copyright-year>
+<copyright-holder>The article authors</copyright-holder>
+<license license-type="open-access" xlink:href="https://creativecommons.org/licenses/by/4.0/">
+<license-p>Authors of papers retain copyright and release the work under
+a Creative Commons Attribution 4.0 International License (CC BY
+4.0)</license-p>
+</license>
+</permissions>
+<kwd-group kwd-group-type="author">
+<kwd>quantum machine learning</kwd>
+<kwd>uncertainty quantification</kwd>
+<kwd>calibration</kwd>
+<kwd>variational quantum circuits</kwd>
+<kwd>qiskit</kwd>
+<kwd>pennylane</kwd>
+</kwd-group>
+</article-meta>
+</front>
+<body>
+<sec id="summary">
+  <title>Summary</title>
+  <p>Quantum machine learning models can produce predictions that look
+  confident even when they are unreliable. This can happen because
+  quantum computers estimate outputs by sampling measurements (“shots”),
+  because near-term devices are noisy, and because training quantum
+  models can be unstable. <bold>QuantumUQ</bold> is an open-source
+  Python library that helps researchers measure and compare predictive
+  uncertainty in quantum machine learning workflows across two widely
+  used ecosystems: <bold>PennyLane</bold> and <bold>Qiskit</bold>.</p>
+  <p>QuantumUQ provides tools to estimate shot-based variability,
+  approximate model (epistemic) uncertainty using ensembles, profile
+  prediction stability across different shot budgets, and evaluate
+  reliability using calibration metrics such as reliability diagrams and
+  expected calibration error (ECE). The library targets researchers who
+  need reproducible, backend-agnostic uncertainty analysis for
+  variational quantum classifiers and related QML models.</p>
+</sec>
+<sec id="statement-of-need">
+  <title>Statement of need</title>
+  <p>Uncertainty quantification (UQ) is a key element of trustworthy
+  machine learning because it helps detect when a model’s output should
+  not be trusted. In quantum machine learning (QML), uncertainty has
+  additional sources that are intrinsic to quantum computation:
+  measurement outcomes are stochastic and expectation values are
+  estimated with a finite number of shots, leading to sampling variance
+  that depends directly on the measurement budget
+  (<xref alt="Nielsen &amp; Chuang, 2010" rid="ref-nielsen2010quantum" ref-type="bibr">Nielsen
+  &amp; Chuang, 2010</xref>). Furthermore, NISQ-era devices introduce
+  hardware noise that perturbs measurement statistics
+  (<xref alt="Preskill, 2018" rid="ref-preskill2018quantum" ref-type="bibr">Preskill,
+  2018</xref>). Variational quantum circuits can also be difficult to
+  train due to non-convex optimization and barren plateaus
+  (<xref alt="McClean et al., 2018" rid="ref-mcclean2018barren" ref-type="bibr">McClean
+  et al., 2018</xref>), and uncertainty-aware approaches are
+  increasingly important for reliable evaluation
+  (<xref alt="Kendall &amp; Gal, 2017" rid="ref-2017arXiv170304977K" ref-type="bibr">Kendall
+  &amp; Gal, 2017</xref>).</p>
+  <p>While QML frameworks provide powerful tools to construct and train
+  circuits, they do not provide a unified, research-focused interface
+  for uncertainty estimation, shot-budget profiling, and calibration
+  analysis across backends. As a result, QML studies often report
+  accuracy without systematically characterizing reliability. QuantumUQ
+  fills this gap by providing a backend-agnostic UQ layer aimed at QML
+  researchers who need consistent uncertainty metrics, reproducible
+  experiments, and explicit resource–reliability trade-off analysis.</p>
+</sec>
+<sec id="state-of-the-field">
+  <title>State of the field</title>
+  <p>PennyLane and Qiskit support circuit construction,
+  simulators/hardware execution, and variational training. However,
+  uncertainty-related evaluations are typically implemented ad hoc and
+  are not standardized across frameworks. Classical uncertainty
+  libraries and calibration toolkits are widely used in conventional
+  deep learning, but they do not model shot-driven uncertainty or
+  measurement-budget trade-offs in QML. Calibration for probabilistic
+  classifiers is well studied in classical ML
+  (<xref alt="Guo et al., 2017" rid="ref-10.5555U002F3305381.3305518" ref-type="bibr">Guo
+  et al., 2017</xref>), yet QML papers rarely include systematic
+  calibration diagnostics.</p>
+  <p>QuantumUQ contributes a QML-specific layer that standardizes
+  shot-based uncertainty estimation, ensemble-based epistemic
+  uncertainty
+  (<xref alt="Lakshminarayanan et al., 2017" rid="ref-lakshminarayanan2017simple" ref-type="bibr">Lakshminarayanan
+  et al., 2017</xref>), stability profiling across shot budgets, and
+  calibration metrics. It also provides adapters that make these
+  evaluations consistent across PennyLane and Qiskit. This design
+  enables reproducible research and fair comparisons across
+  backends.</p>
+</sec>
+<sec id="software-design">
+  <title>Software design</title>
+  <p>QuantumUQ is organized around (i) backend adapters, (ii)
+  uncertainty methods, (iii) a predictive distribution representation,
+  and (iv) evaluation metrics.</p>
+  <p>Backend adapters normalize execution across PennyLane and Qiskit,
+  enabling repeated circuit evaluations at specified shot budgets. A
+  <monospace>PredictiveDistribution</monospace> abstraction represents
+  repeated stochastic predictions and exposes common uncertainty
+  summaries (mean, variance) and reliability metrics (entropy and
+  calibration).</p>
+  <p>QuantumUQ implements two core uncertainty estimators: shot-based
+  estimators that quantify measurement-induced variability, and
+  ensemble-based estimators that approximate epistemic uncertainty by
+  training multiple independent models
+  (<xref alt="Lakshminarayanan et al., 2017" rid="ref-lakshminarayanan2017simple" ref-type="bibr">Lakshminarayanan
+  et al., 2017</xref>). The library also includes stability profiling
+  utilities that characterize how predictions change as shot count
+  increases, supporting principled selection of measurement budgets.</p>
+  <p>Design trade-offs are explicit: higher shot counts reduce sampling
+  variance but increase runtime, while ensemble methods increase cost
+  linearly in the number of trained models. QuantumUQ makes these
+  trade-offs measurable and reproducible for QML workflows.</p>
+  <sec id="example-outputs">
+    <title>Example Outputs</title>
+    <p>QuantumUQ includes utilities for calibration analysis and
+    measurement-budget profiling.
+    <xref alt="[fig-reliability]" rid="fig-reliability">[fig-reliability]</xref>
+    shows a reliability diagram generated using the library,
+    illustrating mild overconfidence in high-confidence regions.
+    <xref alt="[fig-shots]" rid="fig-shots">[fig-shots]</xref> shows
+    predictive entropy as a function of the number of measurement shots
+    for both PennyLane and Qiskit backends, demonstrating the expected
+    decrease in uncertainty as the shot budget increases.</p>
+    <fig id="fig-reliability">
+      <caption><p>Reliability diagram illustrating calibration behavior
+      of a variational quantum classifier.</p></caption>
+      <graphic mimetype="image" mime-subtype="png" xlink:href="reliability_diagram.png" />
+    </fig>
+    <fig id="fig-shots">
+      <caption><p>Predictive entropy as a function of measurement shots
+      for PennyLane and Qiskit backends.</p></caption>
+      <graphic mimetype="image" mime-subtype="png" xlink:href="uncertainty_vs_shots.png" />
+    </fig>
+  </sec>
+</sec>
+<sec id="research-impact-statement">
+  <title>Research impact statement</title>
+  <p>QuantumUQ is distributed as an installable Python package and
+  includes documentation and executable notebooks demonstrating usage
+  with both PennyLane and Qiskit. The repository provides reproducible
+  materials for generating calibration plots and
+  uncertainty-versus-shots curves for variational quantum classifiers
+  (<xref alt="Schuld et al., 2020" rid="ref-PhysRevA.101.032308" ref-type="bibr">Schuld
+  et al., 2020</xref>). The package supports research questions central
+  to reliability in QML: how many shots are required for stable
+  predictions, where models are overconfident, and how uncertainty
+  behavior differs across backends.</p>
+  <p>The software is designed to support near-term research impact by
+  enabling consistent evaluation across QML frameworks and by providing
+  reusable, reproducible building blocks for trustworthy quantum machine
+  learning experiments.</p>
+</sec>
+<sec id="ai-usage-disclosure">
+  <title>AI usage disclosure</title>
+  <p>(Choose one.) - No generative AI tools were used in the software
+  development, documentation, or paper writing. - Generative AI tools
+  were used to assist with drafting and editing parts of the manuscript
+  and/or documentation. All AI-assisted content was reviewed and edited
+  by the author, and correctness was verified via unit tests and
+  rerunning the provided notebooks end-to-end.</p>
+</sec>
+<sec id="acknowledgements">
+  <title>Acknowledgements</title>
+  <p>(Add funding, institutional support, compute resources, or project
+  acknowledgements here.)</p>
+</sec>
+</body>
+<back>
+<ref-list>
+  <title></title>
+  <ref id="ref-mcclean2018barren">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>McClean</surname><given-names>Jarrod R</given-names></name>
+        <name><surname>Boixo</surname><given-names>Sergio</given-names></name>
+        <name><surname>Smelyanskiy</surname><given-names>Vadim N</given-names></name>
+        <name><surname>Babbush</surname><given-names>Ryan</given-names></name>
+        <name><surname>Neven</surname><given-names>Hartmut</given-names></name>
+      </person-group>
+      <article-title>Barren plateaus in quantum neural network training landscapes</article-title>
+      <source>Nature communications</source>
+      <publisher-name>Nature Publishing Group UK London</publisher-name>
+      <year iso-8601-date="2018">2018</year>
+      <volume>9</volume>
+      <issue>1</issue>
+      <fpage>4812</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-2017arXiv170304977K">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Kendall</surname><given-names>Alex</given-names></name>
+        <name><surname>Gal</surname><given-names>Yarin</given-names></name>
+      </person-group>
+      <article-title>What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?</article-title>
+      <source>arXiv e-prints</source>
+      <year iso-8601-date="2017-03">2017</year><month>03</month>
+      <uri>https://arxiv.org/abs/1703.04977</uri>
+      <pub-id pub-id-type="doi">10.48550/arXiv.1703.04977</pub-id>
+      <fpage>arXiv:1703.04977</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-10.5555U002F3305381.3305518">
+    <element-citation publication-type="paper-conference">
+      <person-group person-group-type="author">
+        <name><surname>Guo</surname><given-names>Chuan</given-names></name>
+        <name><surname>Pleiss</surname><given-names>Geoff</given-names></name>
+        <name><surname>Sun</surname><given-names>Yu</given-names></name>
+        <name><surname>Weinberger</surname><given-names>Kilian Q.</given-names></name>
+      </person-group>
+      <article-title>On calibration of modern neural networks</article-title>
+      <source>Proceedings of the 34th international conference on machine learning - volume 70</source>
+      <publisher-name>JMLR.org</publisher-name>
+      <publisher-loc>Sydney, NSW, Australia</publisher-loc>
+      <year iso-8601-date="2017">2017</year>
+      <fpage>1321</fpage>
+      <lpage>1330</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-nielsen2010quantum">
+    <element-citation publication-type="book">
+      <person-group person-group-type="author">
+        <name><surname>Nielsen</surname><given-names>Michael A</given-names></name>
+        <name><surname>Chuang</surname><given-names>Isaac L</given-names></name>
+      </person-group>
+      <source>Quantum computation and quantum information</source>
+      <publisher-name>Cambridge university press</publisher-name>
+      <year iso-8601-date="2010">2010</year>
+    </element-citation>
+  </ref>
+  <ref id="ref-preskill2018quantum">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Preskill</surname><given-names>John</given-names></name>
+      </person-group>
+      <article-title>Quantum computing in the NISQ era and beyond</article-title>
+      <source>Quantum</source>
+      <publisher-name>Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften</publisher-name>
+      <year iso-8601-date="2018">2018</year>
+      <volume>2</volume>
+      <fpage>79</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-lakshminarayanan2017simple">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Lakshminarayanan</surname><given-names>Balaji</given-names></name>
+        <name><surname>Pritzel</surname><given-names>Alexander</given-names></name>
+        <name><surname>Blundell</surname><given-names>Charles</given-names></name>
+      </person-group>
+      <article-title>Simple and scalable predictive uncertainty estimation using deep ensembles</article-title>
+      <source>Advances in neural information processing systems</source>
+      <year iso-8601-date="2017">2017</year>
+      <volume>30</volume>
+    </element-citation>
+  </ref>
+  <ref id="ref-PhysRevA.101.032308">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Schuld</surname><given-names>Maria</given-names></name>
+        <name><surname>Bocharov</surname><given-names>Alex</given-names></name>
+        <name><surname>Svore</surname><given-names>Krysta M.</given-names></name>
+        <name><surname>Wiebe</surname><given-names>Nathan</given-names></name>
+      </person-group>
+      <article-title>Circuit-centric quantum classifiers</article-title>
+      <source>Phys. Rev. A</source>
+      <publisher-name>American Physical Society</publisher-name>
+      <year iso-8601-date="2020-03">2020</year><month>03</month>
+      <volume>101</volume>
+      <uri>https://link.aps.org/doi/10.1103/PhysRevA.101.032308</uri>
+      <pub-id pub-id-type="doi">10.1103/PhysRevA.101.032308</pub-id>
+      <fpage>032308</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+</ref-list>
+</back>
+</article>

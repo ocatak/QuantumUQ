@@ -25,7 +25,7 @@ Learning with PennyLane and Qiskit</article-title>
 <contrib contrib-type="author">
 <name>
 <surname>Catak</surname>
-<given-names>Ferhat</given-names>
+<given-names>Ferhat Ozgur</given-names>
 </name>
 <xref ref-type="aff" rid="aff-1"/>
 </contrib>
@@ -201,12 +201,15 @@ a Creative Commons Attribution 4.0 International License (CC BY
 </sec>
 <sec id="ai-usage-disclosure">
   <title>AI usage disclosure</title>
-  <p>(Choose one.) - No generative AI tools were used in the software
-  development, documentation, or paper writing. - Generative AI tools
-  were used to assist with drafting and editing parts of the manuscript
-  and/or documentation. All AI-assisted content was reviewed and edited
-  by the author, and correctness was verified via unit tests and
-  rerunning the provided notebooks end-to-end.</p>
+  <list list-type="bullet">
+    <list-item>
+      <p>Generative AI tools were used to assist with drafting and
+      editing parts of the manuscript and/or documentation. All
+      AI-assisted content was reviewed and edited by the author, and
+      correctness was verified via unit tests and rerunning the provided
+      notebooks end-to-end.</p>
+    </list-item>
+  </list>
 </sec>
 <sec id="acknowledgements">
   <title>Acknowledgements</title>

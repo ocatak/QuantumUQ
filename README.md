@@ -90,12 +90,15 @@ MIT License. See `LICENSE` for details.
 If you use QuantumUQ in academic work, please cite:
 
 ```bibtex
-@misc{quantumuq2026,
-  title        = {QuantumUQ: Uncertainty Quantification for Quantum Machine Learning},
-  author       = {Catak, Ferhat Ozgur},
-  year         = {2026},
-  note         = {Python library, version 0.1.0},
-  howpublished = {\url{https://github.com/ocatak/QuantumUQ}}
+@article{Catak_2026,
+  title={QuantumUQ: A Library for Uncertainty Quantification in Quantum Machine Learning},
+  url={http://dx.doi.org/10.36227/techrxiv.177205048.88644983/v1},
+  DOI={10.36227/techrxiv.177205048.88644983/v1},
+  publisher={Institute of Electrical and Electronics Engineers (IEEE)},
+  author={Catak, Ferhat Ozgur},
+  year={2026},
+  month=feb 
 }
+
 ```
 

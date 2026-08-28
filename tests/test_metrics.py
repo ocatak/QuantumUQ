@@ -49,4 +49,3 @@ def test_regression_metrics_basic() -> None:
     std = np.array([0.5, 0.5, 0.5])
     assert rmse(y, y_hat) >= 0.0
     assert gaussian_nll(y, y_hat, std) > 0.0
-

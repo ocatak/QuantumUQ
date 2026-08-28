@@ -3,7 +3,16 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Literal, Optional, Protocol, Sequence, Union, runtime_checkable
+from typing import (
+    Any,
+    Dict,
+    Literal,
+    Optional,
+    Protocol,
+    Sequence,
+    Union,
+    runtime_checkable,
+)
 
 import numpy as np
 
@@ -23,10 +32,14 @@ class Predictor(Protocol):
 
     task: TaskType
 
-    def predict(self, X: np.ndarray, shots: Optional[int] = None) -> np.ndarray:  # pragma: no cover - protocol
+    def predict(
+        self, X: np.ndarray, shots: Optional[int] = None
+    ) -> np.ndarray:  # pragma: no cover - protocol
         ...
 
-    def predict_proba(self, X: np.ndarray, shots: Optional[int] = None) -> np.ndarray:  # pragma: no cover - protocol
+    def predict_proba(
+        self, X: np.ndarray, shots: Optional[int] = None
+    ) -> np.ndarray:  # pragma: no cover - protocol
         ...
 
 
@@ -149,7 +162,9 @@ class UQModel:
         """
 
         checkpoint = json.loads(Path(path).read_text())
-        predictor = _predictor_from_checkpoint(checkpoint["predictor"], **backend_kwargs)
+        predictor = _predictor_from_checkpoint(
+            checkpoint["predictor"], **backend_kwargs
+        )
         method = _method_from_checkpoint(checkpoint["method"])
         return cls(predictor, method)
 
@@ -165,7 +180,10 @@ class UncertaintyMethod(Protocol):
 
 def _predictor_to_checkpoint(predictor: Predictor) -> Dict[str, Any]:
     from ..adapters.pennylane_adapter import _QNodePredictor
-    from ..adapters.qiskit_adapter import _QiskitEstimatorPredictor, _QiskitSamplerPredictor
+    from ..adapters.qiskit_adapter import (
+        _QiskitEstimatorPredictor,
+        _QiskitSamplerPredictor,
+    )
 
     def _params(p: Optional[Any]) -> Optional[list]:
         return None if p is None else np.asarray(p).tolist()
@@ -199,7 +217,9 @@ def _predictor_to_checkpoint(predictor: Predictor) -> Dict[str, Any]:
     )
 
 
-def _predictor_from_checkpoint(checkpoint: Dict[str, Any], **backend_kwargs: Any) -> Predictor:
+def _predictor_from_checkpoint(
+    checkpoint: Dict[str, Any], **backend_kwargs: Any
+) -> Predictor:
     from ..adapters.pennylane_adapter import wrap_qnode
     from ..adapters.qiskit_adapter import wrap_qiskit_estimator, wrap_qiskit_sampler
 
@@ -209,7 +229,9 @@ def _predictor_from_checkpoint(checkpoint: Dict[str, Any], **backend_kwargs: Any
     if backend == "pennylane":
         qnode = backend_kwargs.get("qnode")
         if qnode is None:
-            raise ValueError("UQModel.load requires qnode=... for a pennylane checkpoint")
+            raise ValueError(
+                "UQModel.load requires qnode=... for a pennylane checkpoint"
+            )
         batched = backend_kwargs.get("batched")
         return wrap_qnode(
             qnode,
@@ -277,7 +299,9 @@ def _method_to_checkpoint(method: "UncertaintyMethod") -> Dict[str, Any]:
             "Save/load each member's checkpoint individually and rebuild the "
             "ensemble by hand."
         )
-    raise TypeError(f"UQModel.save does not support method type {type(method).__name__}")
+    raise TypeError(
+        f"UQModel.save does not support method type {type(method).__name__}"
+    )
 
 
 def _method_from_checkpoint(checkpoint: Dict[str, Any]) -> "UncertaintyMethod":
@@ -305,4 +329,3 @@ def stack_ensemble_samples(samples: Sequence[np.ndarray]) -> PredictiveDistribut
     mean = arr.mean(axis=0)
     std = arr.std(axis=0)
     return PredictiveDistribution(samples=arr, mean=mean, std=std)
-

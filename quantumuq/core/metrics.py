@@ -82,4 +82,3 @@ def gaussian_nll(
     var = np.clip(std, eps, None) ** 2
     per_point = 0.5 * np.log(2.0 * np.pi * var) + 0.5 * ((y_true - mean) ** 2) / var
     return float(np.mean(per_point))
-

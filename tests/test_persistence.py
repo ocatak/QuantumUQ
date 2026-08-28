@@ -7,7 +7,10 @@ import pennylane as qml
 import pytest
 
 from quantumuq import ShotBootstrap, wrap_qnode
-from quantumuq.adapters.qiskit_adapter import _QiskitEstimatorPredictor, _QiskitSamplerPredictor
+from quantumuq.adapters.qiskit_adapter import (
+    _QiskitEstimatorPredictor,
+    _QiskitSamplerPredictor,
+)
 from quantumuq.core.methods import DeepEnsemble, NoiseProfile
 from quantumuq.core.predictors import UQModel, _predictor_to_checkpoint
 
@@ -53,7 +56,9 @@ def test_save_load_pennylane_roundtrip(tmp_path) -> None:
 
 def test_load_pennylane_without_qnode_raises(tmp_path) -> None:
     circuit = _pennylane_circuit()
-    predictor = wrap_qnode(circuit, task="classification", n_classes=2, params=np.array([0.1]))
+    predictor = wrap_qnode(
+        circuit, task="classification", n_classes=2, params=np.array([0.1])
+    )
     model = predictor.with_uq(ShotBootstrap(n_samples=1, shots=100, seed=0))
     ckpt_path = tmp_path / "model.json"
     model.save(ckpt_path)
@@ -109,7 +114,9 @@ def test_qiskit_estimator_checkpoint_serialization() -> None:
 
 def test_noise_profile_checkpoint_roundtrip(tmp_path) -> None:
     circuit = _pennylane_circuit()
-    predictor = wrap_qnode(circuit, task="classification", n_classes=2, params=np.array([0.2]))
+    predictor = wrap_qnode(
+        circuit, task="classification", n_classes=2, params=np.array([0.2])
+    )
     model = predictor.with_uq(NoiseProfile(sweep_shots=[100, 500], n_repeats=3))
 
     ckpt_path = tmp_path / "model.json"

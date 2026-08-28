@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-08-28
+
+### Changed
+
+- Capped `qiskit` (`<3`) and `qiskit-aer` (`<1`) in the `dev`/`aer` optional
+  dependencies, requested by a Qiskit Ecosystem reviewer on the QuantumUQ
+  submission ([Qiskit/ecosystem#1331](https://github.com/Qiskit/ecosystem/pull/1331)).
+  Not hypothetical: earlier this session a fresh venv grabbed qiskit 2.5.2
+  and hit an unrelated upstream bug in that release's own `passmanager`
+  module.
+
 ## [0.4.0] - 2026-08-28
 
 ### Added
@@ -149,7 +160,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   PennyLane and Qiskit adapters via `wrap_qnode`, `wrap_qiskit_sampler`,
   and `wrap_qiskit_estimator`.
 
-[Unreleased]: https://github.com/ocatak/QuantumUQ/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/ocatak/QuantumUQ/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/ocatak/QuantumUQ/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/ocatak/QuantumUQ/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/ocatak/QuantumUQ/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/ocatak/QuantumUQ/compare/v0.2.1...v0.2.2

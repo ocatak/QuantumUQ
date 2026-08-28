@@ -7,11 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-08-28
+
 ### Fixed
 
 - Placeholder author email in `pyproject.toml` (`ozgur.catak@example.com`)
   replaced with the correct contact address.
 - Repo-wide `black` formatting drift cleared so CI passes.
+
+### Added
+
+- `CHANGELOG.md` (this file).
+- `CITATION.cff`, so GitHub's "Cite this repository" button works.
+- README badge row (PyPI, Python, Tests, Documentation, DOI, License,
+  Downloads), a tagline block, a hero figure, and a proper Examples
+  section linking all notebooks.
 
 ## [0.2.1] - 2026-08-28
 
@@ -59,7 +69,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   PennyLane and Qiskit adapters via `wrap_qnode`, `wrap_qiskit_sampler`,
   and `wrap_qiskit_estimator`.
 
-[Unreleased]: https://github.com/ocatak/QuantumUQ/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/ocatak/QuantumUQ/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/ocatak/QuantumUQ/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/ocatak/QuantumUQ/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/ocatak/QuantumUQ/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/ocatak/QuantumUQ/commit/bb34888

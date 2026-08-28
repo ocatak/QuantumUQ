@@ -1,0 +1,23 @@
+{
+  "quantumuq_checkpoint_version": 1,
+  "predictor": {
+    "backend": "pennylane",
+    "task": "classification",
+    "n_classes": 2,
+    "batched": false,
+    "params": [
+      0.9
+    ]
+  },
+  "method": {
+    "type": "NoiseProfile",
+    "config": {
+      "sweep_shots": [
+        100,
+        500,
+        1000
+      ],
+      "n_repeats": 3
+    }
+  }
+}

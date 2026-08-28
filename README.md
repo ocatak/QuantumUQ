@@ -74,6 +74,9 @@ print(dist.mean.shape, dist.std.shape)
 - **Uncertainty methods**: `ShotBootstrap`, `DeepEnsemble`, `NoiseProfile`
 - **Metrics (classification)**: `nll`, `brier`, `ece`, `predictive_entropy`
 - **Metrics (regression)**: `rmse`, `gaussian_nll`
+- **Persistence**: `UQModel.save()` / `UQModel.load()` checkpoint a fitted
+  model's trained parameters and method config for both PennyLane and Qiskit
+  predictors (see `examples/notebooks/06_uqmodel_persistence.ipynb`)
 
 ### Roadmap (v0.2 ideas)
 

@@ -1,0 +1,21 @@
+{
+  "quantumuq_checkpoint_version": 1,
+  "predictor": {
+    "backend": "pennylane",
+    "task": "classification",
+    "n_classes": 2,
+    "batched": false,
+    "params": [
+      0.9
+    ]
+  },
+  "method": {
+    "type": "ShotBootstrap",
+    "config": {
+      "n_samples": 4,
+      "shots": 1000,
+      "shots_jitter": null,
+      "seed": 0
+    }
+  }
+}

@@ -132,6 +132,10 @@ Runnable notebooks live in
 
 MIT License. See `LICENSE` for details.
 
+### Code of Conduct
+
+This project adheres to the Qiskit Code of Conduct. See `CODE_OF_CONDUCT.md`.
+
 ### Citation
 
 If you use QuantumUQ in academic work, please cite (also available via

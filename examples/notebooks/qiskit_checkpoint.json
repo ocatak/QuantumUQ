@@ -1,0 +1,18 @@
+{
+  "quantumuq_checkpoint_version": 1,
+  "predictor": {
+    "backend": "qiskit_sampler",
+    "task": "classification",
+    "n_classes": 2,
+    "params": null
+  },
+  "method": {
+    "type": "ShotBootstrap",
+    "config": {
+      "n_samples": 4,
+      "shots": 1000,
+      "shots_jitter": null,
+      "seed": 0
+    }
+  }
+}

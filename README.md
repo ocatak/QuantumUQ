@@ -50,8 +50,17 @@ def circuit(x, params):
     qml.StronglyEntanglingLayers(params, wires=[0, 1])
     return qml.probs(wires=[0, 1])
 
+# 2 qubits -> 4 outcomes (|00>,|01>,|10>,|11>); collapse to 2 classes.
+def probs_4_to_2(p):
+    p = np.asarray(p)
+    if p.ndim == 1:
+        return np.array([p[0] + p[1], p[2] + p[3]])
+    return np.stack([p[:, 0] + p[:, 1], p[:, 2] + p[:, 3]], axis=-1)
+
 params = 0.1 * np.random.default_rng(0).standard_normal((1, 2, 3))
-predictor = wrap_qnode(circuit, task="classification", n_classes=2, params=params)
+predictor = wrap_qnode(
+    circuit, task="classification", n_classes=2, params=params, postprocess=probs_4_to_2
+)
 uq = ShotBootstrap(n_samples=16, shots=1000, seed=0)
 uq_model = predictor.with_uq(uq)
 dist = uq_model.predict_dist(np.random.randn(4, 2))
@@ -62,18 +71,21 @@ Qiskit:
 
 ```python
 from quantumuq import wrap_qiskit_sampler, ShotBootstrap
-from qiskit.primitives import Sampler
-from qiskit.circuit import QuantumCircuit
+from qiskit.circuit import Parameter, QuantumCircuit
+from qiskit.primitives import StatevectorSampler
 import numpy as np
 
+theta = Parameter("theta")
 qc = QuantumCircuit(1)
-qc.ry(0.0, 0)
+qc.ry(theta, 0)
 qc.measure_all()
 
 def feature_map(X: np.ndarray):
     return [[float(x[0])] for x in np.atleast_2d(X)]
 
-sampler = Sampler()
+# A Generator instance (not a plain int) makes the sampler's RNG state
+# advance across calls, so repeated ShotBootstrap draws actually differ.
+sampler = StatevectorSampler(seed=np.random.default_rng(0))
 predictor = wrap_qiskit_sampler(
     sampler,
     circuit=qc,
@@ -108,6 +120,7 @@ Runnable notebooks live in
 - [`04_shots_sweep_noise_profile.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/04_shots_sweep_noise_profile.ipynb) -- `NoiseProfile` shot sweeps
 - [`05_ece_calibration_bugfix.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/05_ece_calibration_bugfix.ipynb) -- calibration with `ece()`, including the confidence=1.0 edge case
 - [`06_uqmodel_persistence.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/06_uqmodel_persistence.ipynb) -- `UQModel.save()`/`load()` checkpointing
+- [`07_qiskit_v2_primitives.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/07_qiskit_v2_primitives.ipynb) -- `BaseSamplerV2`/`BaseEstimatorV2` usage and seeding gotchas
 
 ### Roadmap (v0.2 ideas)
 

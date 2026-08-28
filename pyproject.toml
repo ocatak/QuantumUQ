@@ -10,7 +10,7 @@ readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10,<3.13"
 authors = [
-  { name = "Ozgur Catak", email = "ozgur.catak@example.com" },
+  { name = "Ozgur Catak", email = "f.ozgur.catak@uis.no" },
 ]
 keywords = ["quantum", "uncertainty-quantification", "qml", "pennylane", "qiskit"]
 classifiers = [

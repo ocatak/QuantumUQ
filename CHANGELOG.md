@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-08-28
+
+### Added
+
+- `quantumuq.benchmarks`: a reproducible benchmark suite.
+  - Datasets: `load_moons` (no extra dependency), `load_iris` (binary
+    subset), `load_breast_cancer` (PCA-reduced) -- all reduced to 2
+    features so one small reference circuit applies to each. `load_iris`/
+    `load_breast_cancer` require the new `quantumuq[benchmarks]` extra
+    (scikit-learn).
+  - Reference variational classifiers per backend:
+    `train_pennylane_vqc` (gradient-trained) and `train_qiskit_vqc`
+    (SPSA-trained, since Qiskit circuits aren't differentiable through
+    this library).
+  - `run_benchmark(dataset, backend, shots_list=...)`: trains once, sweeps
+    shot count, and reports accuracy/`nll`/`ece`/`brier`/
+    `predictive_entropy`/mean `ShotBootstrap` uncertainty per shot count.
+    Datasets larger than `max_samples` (default 150) are subsampled so
+    runtime stays small and consistent regardless of source dataset size.
+    Automatically detects and corrects for a global class-label swap that
+    a symmetric loss can otherwise let either backend's optimizer converge
+    to (shows up as suspiciously-below-chance accuracy if uncorrected).
+  - New `quantumuq-benchmark` console script:
+    `quantumuq-benchmark --backend pennylane --dataset moons --shots 100,500,1000,10000`.
+  - `tests/test_benchmarks.py`, all 6 dataset/backend combinations verified
+    to converge to above-chance accuracy.
+- `examples/notebooks/08_pennylane_community_demo.ipynb`: "How Confident
+  Should You Be in a Quantum Classifier?", written for submission via
+  PennyLane's Community Demo track. Sweeps shot count on a trained VQC and
+  measures directly (rather than assuming) that `ShotBootstrap` uncertainty
+  shrinks ~1/sqrt(shots) while calibration barely moves -- more shots
+  reduce measurement noise but don't by themselves fix calibration.
+
+### Fixed
+
+- Notebooks 00 and 02 used `pnp.eye(2)[y_train]` (fancy-indexing a
+  `pennylane.numpy` tensor) inside a `qml.grad`-traced loss function, which
+  silently collapses to a 0-d array under autograd tracing in this
+  pennylane/autograd/numpy version combination, raising `AxisError`.
+  `y_train` is a constant, not a differentiated quantity, so plain numpy
+  indexing is correct and sidesteps the bug; both notebooks re-executed
+  successfully after the fix.
+
 ## [0.3.0] - 2026-08-28
 
 ### Changed
@@ -106,7 +149,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   PennyLane and Qiskit adapters via `wrap_qnode`, `wrap_qiskit_sampler`,
   and `wrap_qiskit_estimator`.
 
-[Unreleased]: https://github.com/ocatak/QuantumUQ/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/ocatak/QuantumUQ/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/ocatak/QuantumUQ/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/ocatak/QuantumUQ/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/ocatak/QuantumUQ/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/ocatak/QuantumUQ/compare/v0.2.0...v0.2.1

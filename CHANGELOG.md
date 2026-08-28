@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-28
+
+### Changed
+
+- **Breaking**: `wrap_qiskit_sampler`/`wrap_qiskit_estimator` now require
+  Qiskit V2 primitives (`BaseSamplerV2`/`BaseEstimatorV2` -- e.g.
+  `StatevectorSampler`, `StatevectorEstimator`, `BackendSamplerV2`,
+  `BackendEstimatorV2`). `qiskit>=2.0` removed the V1 primitives and the
+  bare `BaseSampler`/`BaseEstimator` names this adapter previously
+  imported, so it was unusable against current Qiskit regardless of
+  anything else in the library. A V1-style object now raises a clear
+  `TypeError` instead of failing at import time.
+- Estimator `shots=` is converted to `precision = 1/sqrt(shots)`, the
+  standard-error target V2 estimators use in place of a literal shot
+  count.
+
+### Added
+
+- `tests/test_qiskit_adapter.py` (previously zero test coverage on the
+  Qiskit adapter).
+- `examples/notebooks/07_qiskit_v2_primitives.ipynb`, including the
+  seeding gotcha where `StatevectorSampler(seed=<int>)` resets every
+  call (zero shot-noise variance) versus `seed=<Generator instance>`
+  (advances across calls).
+
+### Fixed
+
+- README's Qiskit quickstart used a circuit with zero free parameters
+  (`qc.ry(0.0, 0)`) while its `feature_map` still supplied a binding
+  value per call -- never actually ran. Fixed to use a real `Parameter`.
+- README's PennyLane quickstart declared `n_classes=2` on a 2-qubit,
+  4-outcome circuit with no `postprocess` to collapse them -- also never
+  actually ran. Added the same 4-to-2 mapping notebook 00 already used.
+- `examples/notebooks/06_uqmodel_persistence.ipynb`'s Qiskit section was
+  illustrative-only (not executed) because the adapter didn't work
+  against installed Qiskit; now a real, executed save/load round trip.
+
 ## [0.2.2] - 2026-08-28
 
 ### Fixed
@@ -69,7 +106,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   PennyLane and Qiskit adapters via `wrap_qnode`, `wrap_qiskit_sampler`,
   and `wrap_qiskit_estimator`.
 
-[Unreleased]: https://github.com/ocatak/QuantumUQ/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/ocatak/QuantumUQ/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/ocatak/QuantumUQ/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/ocatak/QuantumUQ/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/ocatak/QuantumUQ/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/ocatak/QuantumUQ/compare/v0.1.0...v0.2.0

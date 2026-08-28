@@ -10,7 +10,7 @@ authors:
 repository-code: "https://github.com/ocatak/QuantumUQ"
 url: "https://quantumuq.readthedocs.io/en/latest/"
 license: MIT
-version: 0.2.2
+version: 0.3.0
 date-released: "2026-08-28"
 keywords:
   - quantum computing

@@ -20,6 +20,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Try QuantumUQ in 15 Minutes: fifteen_minutes.md
   - Concepts: concepts.md
   - Quickstart:
       - PennyLane: quickstart_pennylane.md

@@ -6,5 +6,6 @@ QuantumUQ is a lightweight uncertainty quantification library for **Quantum Mach
 - **Framework-agnostic core**: all uncertainty methods operate on a simple predictor protocol.
 - **Designed for research**: small, explicit code; easy to inspect and extend.
 
-See the Quickstart pages for PennyLane and Qiskit for end-to-end examples.
+New here? Start with [Try QuantumUQ in 15 Minutes](fifteen_minutes.md), or
+see the Quickstart pages for PennyLane and Qiskit for end-to-end examples.
 

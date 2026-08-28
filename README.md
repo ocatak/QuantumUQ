@@ -108,6 +108,35 @@ print(dist.mean.shape, dist.std.shape)
   model's trained parameters and method config for both PennyLane and Qiskit
   predictors
 
+### Benchmark suite
+
+`quantumuq.benchmarks` trains a small reference variational classifier and
+sweeps shot count, reporting accuracy and calibration metrics
+reproducibly -- so a paper can cite a fixed benchmark rather than "we used
+a Python package."
+
+```bash
+pip install "quantumuq[benchmarks]"  # adds scikit-learn, for iris/breast_cancer
+quantumuq-benchmark --backend pennylane --dataset moons --shots 100,500,1000,10000
+```
+
+- **Datasets**: `moons` (no extra dependency), `iris` (binary subset),
+  `breast_cancer` -- all reduced to 2 features so the same small reference
+  circuit applies to each; `iris`/`breast_cancer` require scikit-learn.
+- **Backends**: `pennylane` (gradient-trained) and `qiskit` (SPSA-trained,
+  since Qiskit circuits aren't differentiable through this library).
+- **Metrics per shot count**: accuracy, `nll`, `ece`, `brier`,
+  `predictive_entropy`, and mean `ShotBootstrap` uncertainty.
+- `--output results.csv` saves the full table. The same functionality is
+  available from Python via `quantumuq.benchmarks.run_benchmark(...)`.
+
+This is a lightweight harness, not a rigorous ML pipeline -- see
+`quantumuq.benchmarks.run_benchmark`'s docstring for the exact
+simplifications (fixed single train/test split, dataset subsampling for
+consistent runtime, a shared 2-feature/2-qubit circuit architecture).
+Quantum kernel classifiers and hybrid QNN models, and depolarizing/readout
+noise sweeps, are natural extensions not yet implemented.
+
 ### Examples
 
 Runnable notebooks live in
@@ -123,11 +152,13 @@ Runnable notebooks live in
 - [`07_qiskit_v2_primitives.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/07_qiskit_v2_primitives.ipynb) -- `BaseSamplerV2`/`BaseEstimatorV2` usage and seeding gotchas
 - [`08_pennylane_community_demo.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/08_pennylane_community_demo.ipynb) -- "How Confident Should You Be in a Quantum Classifier?", a PennyLane Community Demo
 
-### Roadmap (v0.2 ideas)
+### Roadmap
 
 - Richer model adapters (more flexible outputs, calibration hooks)
 - Additional metrics and visualization utilities
 - Optional integrations with experiment tracking tools
+- Benchmark suite: quantum kernel classifiers and hybrid QNN models,
+  depolarizing/readout noise sweeps (currently shot-count only)
 
 ### License
 

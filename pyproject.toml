@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "quantumuq"
-version = "0.3.0"
+version = "0.4.0"
 description = "Uncertainty Quantification for Quantum Machine Learning (PennyLane & Qiskit)."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -41,9 +41,13 @@ dev = [
   "jupyter>=1.0.0",
   "pennylane>=0.35",
   "qiskit>=1.0.0",
+  "scikit-learn>=1.3",
 ]
 aer = [
   "qiskit-aer>=0.13",
+]
+benchmarks = [
+  "scikit-learn>=1.3",
 ]
 
 [project.urls]
@@ -52,6 +56,7 @@ Repository = "https://github.com/ocatak/QuantumUQ"
 
 [project.scripts]
 quantumuq-smoke = "examples.scripts.run_smoke_examples:main"
+quantumuq-benchmark = "quantumuq.benchmarks.cli:main"
 
 [tool.hatch.build.targets.sdist]
 include = [

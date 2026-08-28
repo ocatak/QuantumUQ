@@ -18,3 +18,11 @@ This section is auto-generated from the Python docstrings using
 
 ::: quantumuq.adapters.qiskit_adapter
 
+### Benchmark suite
+
+::: quantumuq.benchmarks.datasets
+
+::: quantumuq.benchmarks.models
+
+::: quantumuq.benchmarks.runner
+

@@ -33,6 +33,7 @@ nav:
       - ECE calibration bugfix: examples/05_ece_calibration_bugfix.ipynb
       - UQModel persistence: examples/06_uqmodel_persistence.ipynb
       - Qiskit V2 primitives: examples/07_qiskit_v2_primitives.ipynb
+      - "PennyLane community demo: is your classifier calibrated?": examples/08_pennylane_community_demo.ipynb
   - API Reference: api.md
   - Publishing: publishing.md
 

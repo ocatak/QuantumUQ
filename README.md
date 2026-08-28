@@ -121,6 +121,7 @@ Runnable notebooks live in
 - [`05_ece_calibration_bugfix.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/05_ece_calibration_bugfix.ipynb) -- calibration with `ece()`, including the confidence=1.0 edge case
 - [`06_uqmodel_persistence.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/06_uqmodel_persistence.ipynb) -- `UQModel.save()`/`load()` checkpointing
 - [`07_qiskit_v2_primitives.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/07_qiskit_v2_primitives.ipynb) -- `BaseSamplerV2`/`BaseEstimatorV2` usage and seeding gotchas
+- [`08_pennylane_community_demo.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/08_pennylane_community_demo.ipynb) -- "How Confident Should You Be in a Quantum Classifier?", a PennyLane Community Demo
 
 ### Roadmap (v0.2 ideas)
 

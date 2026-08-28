@@ -5,6 +5,7 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 .venv/
+.venv-test/
 dist/
 build/
 .ipynb_checkpoints/

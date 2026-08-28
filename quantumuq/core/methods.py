@@ -106,9 +106,13 @@ class NoiseProfile:
         if self.n_repeats <= 0:
             raise ValueError("n_repeats must be positive")
 
-    def __call__(self, predictor: Predictor, X: np.ndarray) -> Dict[int, Dict[str, np.ndarray]]:
+    def __call__(
+        self, predictor: Predictor, X: np.ndarray
+    ) -> Dict[int, Dict[str, np.ndarray]]:
         if predictor.task != "classification":
-            raise ValueError("NoiseProfile currently supports classification predictors only")
+            raise ValueError(
+                "NoiseProfile currently supports classification predictors only"
+            )
 
         X_arr = np.asarray(X)
         results: Dict[int, Dict[str, np.ndarray]] = {}
@@ -134,4 +138,3 @@ class NoiseProfile:
             }
 
         return results
-

@@ -37,4 +37,3 @@ def test_toy_dataset_shapes() -> None:
     assert ds.X.shape == (50, 2)
     assert ds.y.shape == (50,)
     assert set(np.unique(ds.y)) == {0, 1}
-

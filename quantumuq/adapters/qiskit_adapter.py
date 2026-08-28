@@ -91,9 +91,7 @@ class _QiskitSamplerPredictor(Predictor):
 
         return [dict(q) for q in quasi_list]
 
-    def predict_proba(
-        self, X: np.ndarray, shots: Optional[int] = None
-    ) -> np.ndarray:
+    def predict_proba(self, X: np.ndarray, shots: Optional[int] = None) -> np.ndarray:
         if self.task != "classification":
             raise RuntimeError("predict_proba is only valid for classification tasks")
 
@@ -136,9 +134,7 @@ class _QiskitEstimatorPredictor(Predictor):
     feature_map: Optional[FeatureMapFn] = None
     postprocess: Optional[PostprocessFn] = None
 
-    def _run(
-        self, X: np.ndarray, shots: Optional[int] = None
-    ) -> np.ndarray:
+    def _run(self, X: np.ndarray, shots: Optional[int] = None) -> np.ndarray:
         _, BaseEstimator = _import_qiskit_primitives()
         if not isinstance(self.estimator, BaseEstimator):  # pragma: no cover
             raise TypeError("estimator must be a Qiskit BaseEstimator or compatible")
@@ -191,9 +187,7 @@ class _QiskitEstimatorPredictor(Predictor):
             arr = _softmax(arr)
         return arr
 
-    def predict_proba(
-        self, X: np.ndarray, shots: Optional[int] = None
-    ) -> np.ndarray:
+    def predict_proba(self, X: np.ndarray, shots: Optional[int] = None) -> np.ndarray:
         if self.task != "classification":
             raise RuntimeError("predict_proba is only valid for classification tasks")
         raw = self._run(X, shots=shots)
@@ -282,4 +276,3 @@ def wrap_qiskit_estimator(
         feature_map=feature_map,
         postprocess=postprocess,
     )
-

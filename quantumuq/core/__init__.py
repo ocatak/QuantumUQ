@@ -8,4 +8,3 @@ This subpackage contains:
 - ``metrics``: Calibration and accuracy metrics.
 - ``predictors``: Predictor protocol and helpers used by the adapters.
 """
-

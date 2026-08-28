@@ -64,4 +64,3 @@ def test_noise_profile() -> None:
         assert stats["std_prob"].shape == (4, 2)
         assert stats["mean_entropy"].shape == (4,)
         assert stats["std_entropy"].shape == (4,)
-

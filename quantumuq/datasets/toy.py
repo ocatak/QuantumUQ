@@ -26,15 +26,11 @@ def make_moons(
 
     # Outer moon
     outer_theta = np.linspace(0, np.pi, n_samples_out)
-    outer_x = np.column_stack(
-        (np.cos(outer_theta), np.sin(outer_theta))
-    )
+    outer_x = np.column_stack((np.cos(outer_theta), np.sin(outer_theta)))
 
     # Inner moon
     inner_theta = np.linspace(0, np.pi, n_samples_in)
-    inner_x = np.column_stack(
-        (1 - np.cos(inner_theta), 1 - np.sin(inner_theta) - 0.5)
-    )
+    inner_x = np.column_stack((1 - np.cos(inner_theta), 1 - np.sin(inner_theta) - 0.5))
 
     X = np.vstack([outer_x, inner_x])
     X += noise * rng.standard_normal(size=X.shape)
@@ -43,4 +39,3 @@ def make_moons(
         [np.zeros(n_samples_out, dtype=int), np.ones(n_samples_in, dtype=int)]
     )
     return ToyDataset(X=X, y=y)
-

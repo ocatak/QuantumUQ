@@ -63,9 +63,7 @@ class _QNodePredictor(Predictor):
             arr = arr / arr.sum(axis=-1, keepdims=True)
         return arr
 
-    def predict_proba(
-        self, X: np.ndarray, shots: Optional[int] = None
-    ) -> np.ndarray:
+    def predict_proba(self, X: np.ndarray, shots: Optional[int] = None) -> np.ndarray:
         if self.task != "classification":
             raise RuntimeError("predict_proba is only valid for classification tasks")
         X_arr = np.asarray(X)
@@ -169,4 +167,3 @@ def wrap_qnode(
         postprocess=postprocess,
         batched=batched,
     )
-

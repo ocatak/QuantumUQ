@@ -7,6 +7,18 @@ import numpy as np
 __all__ = ["train_pennylane_vqc", "train_qiskit_vqc"]
 
 
+def _grad(qml_module, fn, argnum: int = 0):
+    """`qml.grad`'s `argnum` keyword was renamed to `argnums` in
+    PennyLane>=0.43 (which also requires Python>=3.11); older releases only
+    accept `argnum`. Try the new name first, fall back to the old one.
+    """
+
+    try:
+        return qml_module.grad(fn, argnums=argnum)
+    except TypeError:
+        return qml_module.grad(fn, argnum=argnum)
+
+
 def train_pennylane_vqc(
     X_train: np.ndarray,
     y_train: np.ndarray,
@@ -66,7 +78,7 @@ def train_pennylane_vqc(
         probs = pnp.clip(probs, 1e-12, 1.0)
         return -pnp.mean(pnp.sum(y_onehot * pnp.log(probs), axis=1))
 
-    grad_fn = qml.grad(loss, argnum=0)
+    grad_fn = _grad(qml, loss, argnum=0)
     for _ in range(epochs):
         g = grad_fn(params)
         params = params - lr * g

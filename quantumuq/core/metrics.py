@@ -37,7 +37,11 @@ def ece(y_true: np.ndarray, p_pred: np.ndarray, n_bins: int = 15) -> float:
     bin_edges = np.linspace(0.0, 1.0, n_bins + 1)
     ece_val = 0.0
     for i in range(n_bins):
-        mask = (confidences >= bin_edges[i]) & (confidences < bin_edges[i + 1])
+        upper = bin_edges[i + 1]
+        if i == n_bins - 1:
+            mask = (confidences >= bin_edges[i]) & (confidences <= upper)
+        else:
+            mask = (confidences >= bin_edges[i]) & (confidences < upper)
         if not np.any(mask):
             continue
         bin_conf = confidences[mask].mean()

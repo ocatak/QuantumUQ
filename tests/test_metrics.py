@@ -30,6 +30,19 @@ def test_classification_metrics_basic() -> None:
     assert np.all(ent >= 0.0)
 
 
+def test_ece_counts_full_confidence_predictions() -> None:
+    # Predictions with confidence exactly 1.0 must not be dropped from the
+    # last bin: a model that is fully confident and always wrong should
+    # report near-maximal ECE, not zero.
+    y_wrong = np.array([0, 0, 0, 0])
+    p_wrong = np.array([[0.0, 1.0]] * 4)
+    assert ece(y_wrong, p_wrong) == 1.0
+
+    y_correct = np.array([0, 1, 0, 1])
+    p_correct = np.array([[1.0, 0.0], [0.0, 1.0], [1.0, 0.0], [0.0, 1.0]])
+    assert ece(y_correct, p_correct) == 0.0
+
+
 def test_regression_metrics_basic() -> None:
     y = np.array([0.0, 1.0, 2.0])
     y_hat = np.array([0.1, 0.9, 1.9])

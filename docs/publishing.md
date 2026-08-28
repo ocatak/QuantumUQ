@@ -1,3 +1,10 @@
+---
+title: Publishing QuantumUQ to PyPI
+description: >-
+  Maintainer notes for building, test-uploading, and releasing the
+  QuantumUQ package to PyPI via GitHub Actions trusted publishing.
+---
+
 ## Publishing QuantumUQ to PyPI
 
 ### 1. Build the distribution

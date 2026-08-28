@@ -1,5 +1,9 @@
 site_name: QuantumUQ
-site_description: Uncertainty Quantification for Quantum Machine Learning
+site_url: https://quantumuq.readthedocs.io/
+site_description: >-
+  QuantumUQ is an open-source Python library for uncertainty quantification,
+  calibration, shot-noise analysis, and reliability benchmarking in quantum
+  machine learning with Qiskit and PennyLane.
 site_author: Ozgur Catak
 repo_url: https://github.com/ocatak/QuantumUQ
 
@@ -21,7 +25,12 @@ theme:
 nav:
   - Home: index.md
   - Try QuantumUQ in 15 Minutes: fifteen_minutes.md
-  - Concepts: concepts.md
+  - Concepts:
+      - Overview: concepts.md
+      - Uncertainty Quantification in QML: qml_uncertainty_quantification.md
+      - Calibration in QML: qml_calibration.md
+      - Shot Noise & Finite Shots: qml_shot_noise.md
+      - Reliability Benchmarking: qml_reliability_benchmarking.md
   - Quickstart:
       - PennyLane: quickstart_pennylane.md
       - Qiskit: quickstart_qiskit.md

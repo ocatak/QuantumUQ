@@ -1,3 +1,10 @@
+---
+title: QuantumUQ API Reference
+description: >-
+  Auto-generated API reference for QuantumUQ's core uncertainty methods,
+  metrics, predictors, PennyLane/Qiskit adapters, and benchmark suite.
+---
+
 ## API Overview
 
 This section is auto-generated from the Python docstrings using

@@ -12,7 +12,20 @@ requires-python = ">=3.10,<3.13"
 authors = [
   { name = "Ozgur Catak", email = "f.ozgur.catak@uis.no" },
 ]
-keywords = ["quantum", "uncertainty-quantification", "qml", "pennylane", "qiskit"]
+keywords = [
+  "quantum",
+  "quantum-computing",
+  "quantum-machine-learning",
+  "qml",
+  "uncertainty-quantification",
+  "calibration",
+  "shot-noise",
+  "reliability",
+  "benchmarking",
+  "pennylane",
+  "qiskit",
+  "trustworthy-ai",
+]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Science/Research",
@@ -52,7 +65,10 @@ benchmarks = [
 
 [project.urls]
 Homepage = "https://github.com/ocatak/QuantumUQ"
+Documentation = "https://quantumuq.readthedocs.io/"
 Repository = "https://github.com/ocatak/QuantumUQ"
+Issues = "https://github.com/ocatak/QuantumUQ/issues"
+Changelog = "https://github.com/ocatak/QuantumUQ/blob/main/CHANGELOG.md"
 
 [project.scripts]
 quantumuq-smoke = "examples.scripts.run_smoke_examples:main"

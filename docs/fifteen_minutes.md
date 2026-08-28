@@ -1,3 +1,11 @@
+---
+title: Quantum Machine Learning Uncertainty Quantification in 15 Minutes
+description: >-
+  A practical tutorial for adding uncertainty quantification, calibration,
+  and predictive-entropy metrics to Qiskit and PennyLane quantum machine
+  learning models with QuantumUQ.
+---
+
 # Try QuantumUQ in 15 Minutes
 
 ## 1. Install
@@ -94,15 +102,15 @@ print("Per-sample uncertainty (std):", dist.std)
 
 `ece` tells you whether the model's confidence matches its accuracy;
 `predictive_entropy` and `dist.std` tell you how uncertain each individual
-prediction is. They answer different questions -- see the
-[Concepts](concepts.md) page, or
+prediction is. They answer different questions -- see
+[Calibration in Quantum Machine Learning](qml_calibration.md), or
 [this notebook](examples/08_pennylane_community_demo.ipynb) for why shot
 count moves one but not the other.
 
 Want a single number across a shot-count sweep instead of writing this by
 hand? `quantumuq.benchmarks.run_benchmark(...)` (or the `quantumuq-benchmark`
-CLI) does exactly this end to end on a reference model -- see the
-[README's benchmark suite section](https://github.com/ocatak/QuantumUQ#benchmark-suite).
+CLI) does exactly this end to end on a reference model -- see
+[Reliability Benchmarking](qml_reliability_benchmarking.md).
 
 ## 5. Send feedback / open an issue
 

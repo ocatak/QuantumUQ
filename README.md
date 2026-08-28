@@ -20,10 +20,15 @@ QuantumUQ
 > pip install quantumuq
 > ```
 
-Predictive entropy falling as shot count increases, measured identically
-across both backends via the same `Predictor` interface:
+Measured identically across both backends via the same `Predictor`
+interface: as shot count increases, the *variability* of the predictive
+entropy estimate across repeated measurements narrows (smaller error bars),
+even though the mean entropy for this fixed, already-trained model stays
+roughly constant. More shots make each measurement of the model's
+uncertainty more precise -- they do not, by themselves, change how uncertain
+the model actually is.
 
-![Uncertainty vs shots](paper/uncertainty_vs_shots.png)
+![Predictive entropy (mean and standard deviation across repeated NoiseProfile measurements) for PennyLane and Qiskit circuits at shot counts of 100, 500, and 1000, showing narrower error bars at higher shot counts with a roughly constant mean](paper/uncertainty_vs_shots.png)
 
 ### Installation
 

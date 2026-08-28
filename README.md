@@ -76,7 +76,20 @@ print(dist.mean.shape, dist.std.shape)
 - **Metrics (regression)**: `rmse`, `gaussian_nll`
 - **Persistence**: `UQModel.save()` / `UQModel.load()` checkpoint a fitted
   model's trained parameters and method config for both PennyLane and Qiskit
-  predictors (see `examples/notebooks/06_uqmodel_persistence.ipynb`)
+  predictors
+
+### Examples
+
+Runnable notebooks live in
+[`examples/notebooks/`](https://github.com/ocatak/QuantumUQ/tree/main/examples/notebooks):
+
+- [`00_pennylane_quickstart.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/00_pennylane_quickstart.ipynb) -- classification with `ShotBootstrap` on PennyLane
+- [`01_qiskit_quickstart.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/01_qiskit_quickstart.ipynb) -- classification with `ShotBootstrap` and `NoiseProfile` on Qiskit
+- [`02_pennylane_training_ensemble.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/02_pennylane_training_ensemble.ipynb) -- `DeepEnsemble` over trained PennyLane models
+- [`03_qiskit_training_spsa.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/03_qiskit_training_spsa.ipynb) -- training a Qiskit circuit with SPSA
+- [`04_shots_sweep_noise_profile.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/04_shots_sweep_noise_profile.ipynb) -- `NoiseProfile` shot sweeps
+- [`05_ece_calibration_bugfix.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/05_ece_calibration_bugfix.ipynb) -- calibration with `ece()`, including the confidence=1.0 edge case
+- [`06_uqmodel_persistence.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/06_uqmodel_persistence.ipynb) -- `UQModel.save()`/`load()` checkpointing
 
 ### Roadmap (v0.2 ideas)
 

@@ -3,9 +3,27 @@ QuantumUQ
 
 ![QuantumUQ logo](QuantumUQ-logo.png)
 
-Uncertainty Quantification for Quantum Machine Learning on **PennyLane** and **Qiskit**.
+[![PyPI](https://img.shields.io/pypi/v/quantumuq)](https://pypi.org/project/quantumuq/)
+[![Python](https://img.shields.io/pypi/pyversions/quantumuq)](https://pypi.org/project/quantumuq/)
+[![Tests](https://github.com/ocatak/QuantumUQ/actions/workflows/ci.yml/badge.svg)](https://github.com/ocatak/QuantumUQ/actions/workflows/ci.yml)
+[![Documentation](https://readthedocs.org/projects/quantumuq/badge/?version=latest)](https://quantumuq.readthedocs.io/en/latest/)
+[![DOI](https://img.shields.io/badge/DOI-10.36227%2Ftechrxiv.177205048.88644983%2Fv1-blue)](https://doi.org/10.36227/techrxiv.177205048.88644983/v1)
+[![License](https://img.shields.io/pypi/l/quantumuq)](LICENSE)
+[![Downloads](https://img.shields.io/pypi/dm/quantumuq)](https://pypi.org/project/quantumuq/)
 
-**Documentation**: [`https://quantumuq.readthedocs.io/en/latest/`](https://quantumuq.readthedocs.io/en/latest/)
+> **QuantumUQ -- Uncertainty Quantification for Quantum Machine Learning**
+>
+> Measure shot noise, epistemic uncertainty, calibration, and noise
+> sensitivity in **PennyLane** and **Qiskit** models.
+>
+> ```bash
+> pip install quantumuq
+> ```
+
+Predictive entropy falling as shot count increases, measured identically
+across both backends via the same `Predictor` interface:
+
+![Uncertainty vs shots](paper/uncertainty_vs_shots.png)
 
 ### Installation
 
@@ -103,7 +121,8 @@ MIT License. See `LICENSE` for details.
 
 ### Citation
 
-If you use QuantumUQ in academic work, please cite:
+If you use QuantumUQ in academic work, please cite (also available via
+GitHub's "Cite this repository" button, backed by `CITATION.cff`):
 
 ```bibtex
 @article{Catak_2026,

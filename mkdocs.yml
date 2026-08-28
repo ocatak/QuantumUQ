@@ -30,6 +30,9 @@ nav:
       - PennyLane training ensemble: examples/02_pennylane_training_ensemble.ipynb
       - Qiskit training SPSA: examples/03_qiskit_training_spsa.ipynb
       - Shots sweep & noise profile: examples/04_shots_sweep_noise_profile.ipynb
+      - ECE calibration bugfix: examples/05_ece_calibration_bugfix.ipynb
+      - UQModel persistence: examples/06_uqmodel_persistence.ipynb
+      - Qiskit V2 primitives: examples/07_qiskit_v2_primitives.ipynb
   - API Reference: api.md
   - Publishing: publishing.md
 

@@ -10,6 +10,7 @@ QuantumUQ
 [![DOI](https://img.shields.io/badge/DOI-10.36227%2Ftechrxiv.177205048.88644983%2Fv1-blue)](https://doi.org/10.36227/techrxiv.177205048.88644983/v1)
 [![License](https://img.shields.io/pypi/l/quantumuq)](LICENSE)
 [![Downloads](https://img.shields.io/pypi/dm/quantumuq)](https://pypi.org/project/quantumuq/)
+[![Qiskit Ecosystem](https://qisk.it/e-74abcae3)](https://qisk.it/e)
 
 > **QuantumUQ -- Uncertainty Quantification for Quantum Machine Learning**
 >

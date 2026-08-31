@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- README: Qiskit Ecosystem badge, now that QuantumUQ has been officially
+  accepted ([Qiskit/ecosystem#1331](https://github.com/Qiskit/ecosystem/pull/1331)).
+
 ## [0.4.1] - 2026-08-28
 
 ### Changed

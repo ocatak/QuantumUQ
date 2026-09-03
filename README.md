@@ -146,7 +146,9 @@ noise sweeps, are natural extensions not yet implemented.
 ### Examples
 
 Runnable notebooks live in
-[`examples/notebooks/`](https://github.com/ocatak/QuantumUQ/tree/main/examples/notebooks):
+[`examples/notebooks/`](https://github.com/ocatak/QuantumUQ/tree/main/examples/notebooks).
+Each one opens directly in Google Colab (the badge at the top of the
+notebook installs its dependencies for you) -- no local setup needed:
 
 - [`00_pennylane_quickstart.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/00_pennylane_quickstart.ipynb) -- classification with `ShotBootstrap` on PennyLane
 - [`01_qiskit_quickstart.ipynb`](https://github.com/ocatak/QuantumUQ/blob/main/examples/notebooks/01_qiskit_quickstart.ipynb) -- classification with `ShotBootstrap` and `NoiseProfile` on Qiskit

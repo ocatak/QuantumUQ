@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - README: Qiskit Ecosystem badge, now that QuantumUQ has been officially
   accepted ([Qiskit/ecosystem#1331](https://github.com/Qiskit/ecosystem/pull/1331)).
+- "Open in Colab" badges on all 9 example notebooks, each followed by a
+  `%pip install` cell so the notebook is self-contained with no local setup.
+  PennyLane/Qiskit are pinned to the exact versions verified throughout
+  development (`pennylane==0.42.3`, `qiskit==2.3.1`) rather than left
+  open-ended -- an unpinned `qiskit` install can land on `qiskit==2.5.2`,
+  which has an upstream bug unrelated to this project that breaks entirely
+  on Python 3.10. Verified by executing every notebook end-to-end in a
+  genuinely fresh virtual environment (only the packages Colab ships by
+  default preinstalled) so the `%pip install` cell is exercised for real,
+  not just added on faith.
 
 ## [0.4.1] - 2026-08-28
 
